@@ -1,0 +1,36 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sorting visualizer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <h3>Sorting Visualizer</h3>
+          <ul>
+            <li><a href="/">Create New Array</a></li>
+            <li><a onclick="merge_sort()">Merge Sort</a></li>
+            <li><a onclick="quick_sort()">Quick Sort</a></li>
+            <li><a onclick="bubble_sort()">Bubble Sort</a></li>
+            <li><a onclick="selection_sort()">Selection Sort</a></li>
+            <li><a onclick="insertion_sort()">Insertion Sort</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="array-container">
+      {% for i in arr %}
+      <div
+        class="array-bars"
+        style="height:{{ i }}px; background-color: #1778b0;"
+      ></div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
