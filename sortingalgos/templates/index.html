@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   </head>
+
   <body>
     <header>
       <div class="container">
@@ -23,7 +24,6 @@
         </nav>
       </div>
     </header>
-
     <div class="array-container">
       {% for i in arr %}
       <div
@@ -33,4 +33,29 @@
       {% endfor %}
     </div>
   </body>
+
+  <script>
+
+      function insertion_sort() {
+        $.ajax({
+          type: "POST",
+          url: '{{ 'insertionsort/' }}',
+          data: { csrfmiddlewaretoken: '{{ csrf_token }}'},
+          success: function callback(animation){
+              var arr = JSON.parse(animation);
+
+            for (let i = 0; i < animation.length; i++) {
+                const arrayBars = document.getElementsByClassName('array-bars');
+                const [swap1, firstHeight, swap2, secondHeight] = arr[i];
+                const barStyle1 = arrayBars[swap1].style;
+                const barStyle2 = arrayBars[swap2].style;
+                setTimeout(() => {
+                    barStyle1.height = `${secondHeight}px`;
+                    barStyle2.height = `${firstHeight}px`;
+                },i * 100);
+                }
+            }
+        });
+        }
+  </script>
 </html>
